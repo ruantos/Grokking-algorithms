@@ -2,7 +2,7 @@
 Um dos algoritmos de ordenação mais eficientes com O(n log n).
 Superando Mergesort e HeapSort. Porém, em seu pior caso é O(n²).
 O pior caso ocorre quando o pivot se encontra em um dos extremos do array"""
-
+import time
 from random import randint
 
 def qsort(array):
@@ -25,5 +25,12 @@ def qsort(array):
     # menores ordenados + pivot + maiores ordenados
     return qsort(smallest) + [pivot] + qsort(greatest)
 
+
+tic = time.time()
+
 arr = [3,3,6,7,1,10,42,14]
 print(qsort(arr))
+
+toc = time.time()
+print(f"Tempo de execução n1: {toc - tic}")
+
