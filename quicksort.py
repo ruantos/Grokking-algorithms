@@ -1,4 +1,9 @@
-""" Implementação do algoritmo de ordenação Quicksort. Algoritmo eficiente com O(n log n)"""
+""" Implementação do algoritmo de ordenação Quicksort. 
+Um dos algoritmos de ordenação mais eficientes com O(n log n).
+Superando Mergesort e HeapSort. Porém, em seu pior caso é O(n²).
+O pior caso ocorre quando o pivot se encontra em um dos extremos do array"""
+
+from random import randint
 
 def qsort(array):
     """ Função de ordenação de arrays com técnica Divide and Conquer. """
@@ -8,16 +13,17 @@ def qsort(array):
         return array
 
     # Caso recursivo
-    pivot = array[0]
+    # pivot = valor aleatório.
+    pivot = array[randint(0, len(array) -1)]
+    array.remove(pivot)
 
+    smallest = [int(i) for i in array if i <= pivot]
     # Lista dos elementos menores que o pivot
-    smallest = [int(i) for i in array[1:] if i < pivot]
     # Lista dos elementos maiores que o pivot
-    greatest = [int(i) for i in array[1:] if i > pivot]
+    greatest = [int(i) for i in array if i > pivot]
 
     # menores ordenados + pivot + maiores ordenados
     return qsort(smallest) + [pivot] + qsort(greatest)
 
-
-arr = [3,6,7,1,10,42,14]
+arr = [3,3,6,7,1,10,42,14]
 print(qsort(arr))
